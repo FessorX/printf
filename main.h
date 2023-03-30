@@ -6,7 +6,7 @@
 
 /**
  * struct flags - struct of flag switches for _printf()
- * 
+ *
  * @plus: flag for the '+'
  * @space: flag for the ' '
  * @hash: flag for the '#'

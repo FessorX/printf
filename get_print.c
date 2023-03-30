@@ -2,7 +2,7 @@
 
 /**
  * get_print - Selects a printing function
- * 
+ *
  * @s: character specifier
  * Description: The function loops through the struct's array
  * func_arr[] to match the specifier to the function func_arr[1]
@@ -10,6 +10,9 @@
  */
 int (*get_print(char s))(va_list, flag *)
 {
+	int i;
+	int arr;
+
 	ph func_arr[] = {
 		{'u', print_unsigned},
 		{'i', print_int},
@@ -27,8 +30,7 @@ int (*get_print(char s))(va_list, flag *)
 		{'%', print_percent}
 		};
 
-	int arr = 14;
-	int i;
+	arr = 14;
 	for (i = 0; i < arr; i++)
 		if (func_arr[i].c == s)
 			return (func_arr[i].f);

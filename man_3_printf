@@ -48,7 +48,7 @@ Prints reverse of intput string
 .IP %R
 Converts string to rot13
 .IP %p
-Prints address in hexadecimal 
+Prints address in hexadecimal
 
 .SH OPTIONS
 

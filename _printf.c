@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * _printf - printf function
- * 
+ *
  * @format: const char pointer
  * Return: len
  */

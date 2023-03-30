@@ -2,7 +2,6 @@
 
 /**
  * print_int - prints an integer
-
  * @l: va_list of arguments from _printf
  * @f: pointer to the struct flags determining
  * if a flag is passed to _printf
@@ -25,7 +24,6 @@ int print_int(va_list l, flag *f)
 
 /**
  * print_unsigned - prints an unsigned integer
-
  * @l: va_list of arguments from _printf
  * @f: pointer to the struct flags determining
  * if a flag is passed to _printf
@@ -43,7 +41,6 @@ int print_unsigned(va_list l, flag *f)
 /**
  * print_number - helper function that loops through
  * an integer and prints all its digits
- 
  * @n: integer to be printed
  */
 void print_number(int n)

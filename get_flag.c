@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * get_flag - turns on flags if _printf finds any
- * 
+ *
  * @s: character specifier
  * @f: pointer to the struct flags
  *
@@ -10,6 +10,7 @@
 int get_flag(char s, flag *f)
 {
 	int i = 0;
+
 	switch (s)
 	{
 		case '+':
