@@ -1,34 +1,75 @@
-#ifndef _HOLBERTON_
-#define _HOLBERTON_
+#ifndef MAIN_H
+#define MAIN_H
 
-#include <unistd.h>
+#include <stdlib.h>
 #include <stdarg.h>
-#include <stdio.h>
-#include <limits.h>
 
 /**
-* struct op - flag / function object
-* @c: flag
-* @f: function
-*/
-
-typedef struct op
+ * struct flags - struct of flag switches for _printf()
+ * 
+ * @plus: flag for the '+'
+ * @space: flag for the ' '
+ * @hash: flag for the '#'
+ */
+typedef struct flags
 {
-	char *c;
-	int (*f)(va_list);
-} op_t;
+	int plus;
+	int space;
+	int hash;
+} flag;
+
+/**
+ * struct printer - struct to choose the right function passed to _printf()
+ *
+ * @c: format specifier
+ * @f: pointer to the correct printing function
+ */
+typedef struct printer
+{
+	char c;
+	int (*f)(va_list ap, flag *f);
+} ph;
+
+int print_int(va_list l, flag *f);
+
+void print_number(int n);
+
+int print_unsigned(va_list l, flag *f);
+
+int count_digit(int i);
+
+int print_hex(va_list l, flag *f);
+
+int print_hex_big(va_list l, flag *f);
+
+int print_binary(va_list l, flag *f);
+
+int print_octal(va_list l, flag *f);
+
+char *convert(unsigned long int num, int base, int lowercase);
 
 int _printf(const char *format, ...);
+
+int (*get_print(char s))(va_list, flag *);
+
+int get_flag(char s, flag *f);
+
+int print_string(va_list l, flag *f);
+
+int print_char(va_list l, flag *f);
+
 int _putchar(char c);
-int print_c(va_list ar_list);
-int (*get_func(char s))(va_list ar_list);
-int print_s(va_list ar_list);
-int print_d(va_list ar_list);
-int print_i(va_list ar_numlist);
-int print_b(va_list binary_list);
-int print_u(va_list ar_list);
-int print_o(va_list ar_list);
-int print_x(va_list ar_list);
-int print_X(va_list ar_list);
+
+int _puts(char *str);
+
+int print_rot13(va_list l, flag *f);
+
+int print_rev(va_list l, flag *f);
+
+int print_bigS(va_list l, flag *f);
+
+int print_address(va_list l, flag *f);
+
+int print_percent(va_list l, flag *f);
 
 #endif

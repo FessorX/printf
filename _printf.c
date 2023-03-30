@@ -1,47 +1,44 @@
 #include "main.h"
 /**
-* _printf - main function to print in console
-* @format: array to print and check type
-* Return: count of character printed
-**/
+ * _printf - printf function
+ * 
+ * @format: const char pointer
+ * Return: len
+ */
 int _printf(const char *format, ...)
 {
-	int count = -1;
+	const char *p;
+	va_list args;
+	int (*printfunction)(va_list, flag *);
+	flag flags = {0, 0, 0};
 
-	if (format != NULL)
+	int count = 0;
+
+	va_start(args, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = format; *p; p++)
 	{
-		int i;
-		va_list ar_list;
-		int (*o)(va_list);
-
-		va_start(ar_list, format);
-
-		if (format[0] == '%' && format[1] == '\0')
-			return (-1);
-
-		count = 0;
-
-		for (i = 0; format[i] != '\0'; i++)
+		if (*p == '%')
 		{
-			if (format[i] == '%')
+			p++;
+			if (*p == '%')
 			{
-				if (format[i + 1] == '%')
-				{
-					count += _putchar(format[i]);
-					i++;
-				}
-				else if (format[i + 1] != '\0')
-				{
-					o = get_func(format[i + 1]);
-					count += (o ? o(ar_list) : _putchar(format[i]) + _putchar(format[i + 1]));
-					i++;
-				}
+				count += _putchar('%');
+				continue;
 			}
-			else
-				count += _putchar(format[i]);
-		}
-		va_end(ar_list);
+			while (get_flag(*p, &flags))
+				p++;
+			printfunction = get_print(*p);
+			count += (printfunction)
+				? printfunction(args, &flags)
+				: _printf("%%%c", *p);
+		} else
+			count += _putchar(*p);
 	}
-
+	_putchar(-1);
+	va_end(args);
 	return (count);
 }

@@ -22,7 +22,7 @@ Include the "main.h" header file on the functions using the _printf()
 Create a file (main.c) with below contend
 
 Example:
-<code>
+```
 #include <limits.h>
 #include <stdio.h>
 #include "main.h"
@@ -95,6 +95,6 @@ Len:[12]
 Unknown:[%r]
 Unknown:[%r]
 alex@ubuntu:~/c/printf$
-</code>
+```
 # Authors:
 Musa Abraham and Victor Ayodele
