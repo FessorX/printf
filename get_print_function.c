@@ -27,7 +27,7 @@ int (*get_print(char s))(va_list, flag *)
 		{'R', print_rot13},
 		{'r', print_rev},
 		{'p', print_address},
-		{'%', print_percent}
+		{NULL, NULL}
 		};
 
 	arr = 14;

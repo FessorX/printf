@@ -2,14 +2,14 @@
 
 /**
  * print_int - prints an integer
- * @l: va_list of arguments from _printf
- * @f: pointer to the struct flags determining
- * if a flag is passed to _printf
- * Return: number of char printed
+ * @digits: va_list of arguments from _printf
+ * @f: pointer to the struct flag
+ *
+ * Return: num of char printed to stdout
  */
-int print_int(va_list l, flag *f)
+int print_int(va_list digits, flag *f)
 {
-	int n = va_arg(l, int);
+	int n = va_arg(digits, int);
 	int result = count_digit(n);
 
 	if (f->space == 1 && f->plus == 0 && n >= 0)
@@ -45,19 +45,19 @@ int print_unsigned(va_list l, flag *f)
  */
 void print_number(int n)
 {
-	unsigned int n1;
+	unsigned int x;
 
 	if (n < 0)
 	{
 		_putchar('-');
-		n1 = -n;
+		x = -n;
 	}
 	else
-		n1 = n;
+		x = n;
 
-	if (n1 / 10)
-		print_number(n1 / 10);
-	_putchar((n1 % 10) + '0');
+	if (x / 10)
+		print_number(x / 10);
+	_putchar((x % 10) + '0');
 }
 
 /**
@@ -69,16 +69,41 @@ void print_number(int n)
 int count_digit(int i)
 {
 	unsigned int x = 0;
-	unsigned int u_i;
+	unsigned int y;
 
 	if (i < 0)
-		u_i = i * -1;
+		y = i * -1;
 	else
-		u_i = i;
-	while (u_i != 0)
+		y = i;
+	while (y != 0)
 	{
-		u_i /= 10;
+		y /= 10;
 		x++;
 	}
 	return (x);
+}
+
+/**
+ * convert - converts number and base into string
+ *
+ * @num:  number
+ * @base: base
+ * @lowercase: Hexadecimal flag (1 = lowercase)
+ * Return: pointer to result string
+ */
+char *convert(unsigned long int num, int base, int lowercase)
+{
+	static char *rep;
+	static char buffer[50];
+	char *ptr = &buffer[49];
+
+	rep = (lowercase) ? "0123456789abcdef" : "0123456789ABCDEF";
+	*ptr = '\0';
+
+	do {
+		*--ptr = rep[num % base];
+		num /= base;
+	} while (num != 0);
+
+	return (ptr);
 }

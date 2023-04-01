@@ -30,21 +30,21 @@ typedef struct printer
 	int (*f)(va_list ap, flag *f);
 } ph;
 
-int print_int(va_list l, flag *f);
+int print_int(va_list, flag *f);
 
 void print_number(int n);
 
-int print_unsigned(va_list l, flag *f);
+int print_unsigned(va_list, flag *f);
 
 int count_digit(int i);
 
-int print_hex(va_list l, flag *f);
+int print_hex(va_list, flag *f);
 
-int print_hex_big(va_list l, flag *f);
+int print_hex_big(va_list, flag *f);
 
-int print_binary(va_list l, flag *f);
+int print_binary(va_list, flag *f);
 
-int print_octal(va_list l, flag *f);
+int print_octal(va_list, flag *f);
 
 char *convert(unsigned long int num, int base, int lowercase);
 
@@ -54,22 +54,20 @@ int (*get_print(char s))(va_list, flag *);
 
 int get_flag(char s, flag *f);
 
-int print_string(va_list l, flag *f);
+int print_string(va_list, flag *f);
 
-int print_char(va_list l, flag *f);
+int print_char(va_list, flag *f);
 
 int _putchar(char c);
 
 int _puts(char *str);
 
-int print_rot13(va_list l, flag *f);
+int print_rot13(va_list, flag *f);
 
-int print_rev(va_list l, flag *f);
+int print_rev(va_list, flag *f);
 
-int print_bigS(va_list l, flag *f);
+int print_bigS(va_list, flag *f);
 
-int print_address(va_list l, flag *f);
-
-int print_percent(va_list l, flag *f);
+int print_address(va_list, flag *f);
 
 #endif
